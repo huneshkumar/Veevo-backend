@@ -1,16 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import { dbConnection } from "./src/config/db.js";
-
-const app = express();
+import { app } from "./src/app.js";
 dotenv.config();
-dbConnection();
-app.use(express.json());
 
-app.get("/test", (req, res) => {
-  res.status(200).send("server is running");
-});
-
-app.listen(5000, () => {
+dbConnection().then(()=>{
+    app.listen(process.env.PORT, () => {
   console.log("app is running on 5000");
 });
+
+}).catch((error)=>{
+console.log("connection error")
+});
+
+
