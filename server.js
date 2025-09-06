@@ -6,7 +6,7 @@ dotenv.config();
 
 dbConnection().then(()=>{
     app.listen(process.env.PORT, () => {
-  console.log("app is running on 5000");
+  console.log("app is running on 5000",process.env.CLOUD_NAME);
 });
 
 }).catch((error)=>{
